@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int minCostOfBreaking(int X[],int Y[],int n,int w){
+    int res = 0;
+    sort(X,X+n,greater<int>());
+    sort(Y,Y+w,greater<int>());
+
+    int vert = 1, horz = 1;
+    int i=0,j = 0;
+
+    while(i<n && j<w){
+        if(X[i]>Y[j]){
+            res += X[i]*vert;
+            horz++;
+            i++;
+        } else {
+            res += Y[j]*horz;
+            vert++;
+            j++;
+        }
+    }
+    // cout<<res<<endl;
+    int total =0;
+    while(i<n)
+        total += X[i++];
+    res += total*vert;
+
+    total = 0;
+    while(j<w)
+        total += Y[j++];
+    res+=total*horz;
+
+    return res;
+}
+
+int main() {
+    int n = 6, w = 4;
+    int X[n-1] = {2,1,3,1,4};
+    int Y[w-1] = {4,1,2};
+    int t = minCostOfBreaking(X,Y,n-1,w-1);
+    cout<<t;
+    return 0;
+}
