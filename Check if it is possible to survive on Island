@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int s,n,m;
+    cin>>s>>n>>m;
+
+    int x = s/7;
+    int y = s-x;
+    int sm = s*m;
+
+    int res = sm/n;
+    if(sm%n != 0) res++;
+    if(res<=y) cout<<"YES";
+    else cout<<"NO";
+    return 0;
+}
