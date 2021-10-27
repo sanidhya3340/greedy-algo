@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct meet {
+    int start;
+    int end;
+    int pos;
+};
+
+bool com(struct meet m1,meet m2) {
+    return m1.end < m2.end;
+}
+
+int main(){
+    int n;cin>>n;
+
+    int s[n],f[n];
+    for(int i=0;i<n;i++) cin>>s[i];
+    for(int i=0;i<n;i++) cin>>f[i];
+
+    struct meet m[n];
+    
+    for(int i=0;i<n;i++){
+        m[i].start = s[i];
+        m[i].end = f[i];
+        m[i].pos = i+1;
+    }
+
+    sort(m, m +n, com);
+
+    vector<int>res;
+
+    res.push_back(m[0].pos);
+
+    int time_limit = m[0].end;
+
+    for(int i=1;i<n;i++){
+        if(m[i].start >= time_limit){
+            res.push_back(m[i].pos);
+            time_limit = m[i].end;
+        }
+    }
+
+    for(int i=0;i<res.size();i++) {
+        cout<<res[i]<<" ";
+    }
+
+
+    return 0;
+}
