@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int t;
+    cin>>t;
+    // cout<<"t"<<t<<endl;
+
+    while(t--){
+        int h,a;cin>>h>>a;
+        // cout<<"h"<<h<<" "<<"a"<<a<<endl;
+        int ans=1;
+        h+=3;
+        a+=2;
+        while(1){
+            if(h>20 && a<=10){
+                h-=17;
+                a+=7;
+                ans+=2;
+            }
+            else if(h>5 && a>10){
+                h-=2;
+                a-=8;
+                ans+=2;
+            }
+            else{
+                cout<<ans<<endl;
+                break;
+            }
+        }
+    }
+}
