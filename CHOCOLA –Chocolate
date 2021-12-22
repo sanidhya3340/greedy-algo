@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int 
+int main(){
+
+    ll T;cin>>T;
+    while(T--){
+        int m,n;cin>>m>>n;
+        int hrz[m],vrt[n];
+        for(int i=0;i<m-1;i++){
+            cin>>hrz[i];
+        }
+        for(int i=0;i<n-1;i++){
+            cin>>vrt[i];
+        }
+
+        int hz=1,vz=1;
+        int sum=0;
+        sort(hrz,hrz+m-1,greater<int>());
+        sort(vrt,vrt+n-1,greater<int>());
+
+        int i=0,j=0;
+        while(i<m-1 && j<n-1){
+            if(hrz[i]>vrt[j]){
+                sum+=hrz[i]*vz;
+                hz++;
+                i++;
+            }
+            else if(hrz[i]<vrt[j]){
+                sum+=vrt[j]*hz;
+                vz++;
+                j++;
+            }
+            else{
+                if(vz>hz){
+                    sum+=hz*vrt[j];
+                    j++;
+                    vz++;
+                }else{
+                    sum+=vz*hrz[i];
+                    i++;
+                    hz++;
+                }
+            }
+        }
+
+        while(i<m-1){
+            sum+=hrz[i]*vz;
+            hz++;
+            i++;
+        }
+        while(j<n-1){
+            sum+=vrt[j]*hz;
+            vz++;
+            j++;
+        }
+
+        cout<<sum<<endl;
+
+    }
+    return 0;
+}
